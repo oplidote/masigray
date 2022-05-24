@@ -28,6 +28,7 @@ li {
 
 html {
     font-size: 10px;
+    overflow-x: hidden;
 }
 
 /* 공통요소 */
@@ -64,6 +65,8 @@ body {
 .header {
     position: relative;
     display: block;
+    z-index: 999;
+    background-color: #fff;
 
     .container {
         width: $header-conatiner;
@@ -72,7 +75,7 @@ body {
             position: relative;
             display: block;
             overflow: hidden;
-            margin: 20px 0;
+            padding: 20px 0;
 
             .help-menu {
                 position: relative;
@@ -205,7 +208,7 @@ body {
     top: 0;
     width: 100%;
     background-color: #fff;
-    z-index: 999;
+
 
     .container {
         .header-top {
@@ -227,6 +230,184 @@ body {
     }
 }
 
+// 모바일 메뉴 관련
+.m-bt {
+    position: absolute;
+    left: 23px;
+    top: 23px;
+    display: none;
+    width: 22px;
+    height: 21px;
+    border: 0;
+    background-color: transparent;
+    cursor: pointer;
+    font-size: 0;
+
+    &::after {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 0;
+        display: block;
+        width: 22px;
+        height: 21px;
+        background: url('../images/m-bt.png') no-repeat center;
+        background-size: cover;
+    }
+}
+
+.m-menu-bg {
+    position: fixed;
+    left: 100%;
+    top: 0;
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.9);
+    z-index: 99;
+}
+.m-menu-bg-active {
+    left: 0;
+}
+
+.m-menu-wrap {
+    position: fixed;
+    left: -360px;
+    transition: left 0.2s;
+    top: 0;
+    display: block;
+    width: 320px;
+    height: 100vh;
+    background-color: #fff;
+    z-index: 99999;
+
+    .m-bt-close {
+        position: absolute;
+        right: -20px;
+        top: 20px;
+        display: block;
+        width: 22px;
+        height: 21px;
+        background: url('../images/btn_close2.png') no-repeat center;
+        background-size: cover;
+        cursor: pointer;
+        border: 0;
+        font-size: 0;
+    }
+
+    .m-sns-menu {
+        position: relative;
+        display: block;
+        overflow: hidden;
+
+        li {
+            position: relative;
+            display: block;
+            float: left;
+            margin-right: 7px;
+            margin-top: 5px;
+
+            a {
+                position: relative;
+                display: block;
+                width: 23px;
+                height: 23px;
+                font-size: 0;
+            }
+
+            &:first-child {
+                margin-left: 5px;
+            }
+
+            &:nth-child(1) a {
+                background: url('../images/sns_blog.png') no-repeat center;
+                background-size: cover;
+            }
+
+            &:nth-child(2) a {
+                background: url('../images/sns_insta.png') no-repeat center;
+                background-size: cover;
+            }
+
+            &:nth-child(3) a {
+                background: url('../images/sns_facebook.png') no-repeat center;
+                background-size: cover;
+            }
+        }
+
+    }
+}
+.m-menu-wrap-active {
+    left: 0;
+}
+.m-gnb {
+    position: relative;
+    display: block;
+    margin-top: 15px;
+
+    >li {
+        position: relative;
+        display: block;
+
+        border-bottom: 1px solid #ededed;
+
+        >a {
+            position: relative;
+            display: block;
+            font-size: 16px;
+            line-height: 50px;
+            font-weight: 500;
+            color: #222;
+            padding: 0 20px;
+
+            &:hover {
+                color: #4abbc3;
+            }
+            &:hover::after {
+                display: none;
+            }
+
+            &::after {
+                content: '';
+                position: absolute;
+                right: 20px;
+                top: 50%;
+                transform: translateY(-50%);
+                display: block;
+                width: 13px;
+                height: 9px;
+                background: url('../images/lnb_bl.png') no-repeat center;
+                background-size: cover;
+            }
+        }
+
+        .m-submenu {
+            position: relative;
+            display: none;
+            background-color: #f1f1f1;
+
+            li {
+                position: relative;
+                display: block;
+
+                a {
+                    position: relative;
+                    display: block;
+                    font-size: 13px;
+                    color: #888;
+                    line-height: 30px;
+                    padding: 0 20px;
+                }
+            }
+        }
+
+        &:hover .m-submenu {
+            display: block;
+        }
+    }
+
+}
+
 @media all and (max-width:1155px) {
     .header {
         .container {
@@ -242,7 +423,7 @@ body {
                 .logo {
                     width: 144px;
                     height: 33px;
-                    margin-top: 10px;
+                    margin-top: 18px;
                 }
 
                 .nav {
@@ -281,6 +462,7 @@ body {
             }
         }
     }
+
 }
 
 @media all and (max-width:700px) {
@@ -307,14 +489,84 @@ body {
             }
         }
     }
+
+    .m-bt {
+        display: block;
+    }
 }
 
 /* 비주얼 */
 .visual {
     position: relative;
     display: block;
-    height: 700px;
-    background-color: skyblue;
+    max-height: 700px;
+    height: 50vw;
+
+    .sw-visual {
+        width: 100%;
+        height: 100%;
+
+        .visual-div {
+            position: relative;
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+        .visaul-bg-1 {
+            background: url('../images/main_visual01.jpg') no-repeat center;
+            background-size: cover;
+        }
+        .visaul-bg-2 {
+            background: url('../images/main_visual02.jpg') no-repeat center;
+            background-size: cover;
+        }
+        .visaul-bg-3 {
+            background: url('../images/main_visual03.jpg') no-repeat center;
+            background-size: cover;
+        }
+        .visaul-bg-4 {
+            background: url('../images/main_visual04.jpg') no-repeat center;
+            background-size: cover;
+        }
+
+        .sw-visual-prev {
+            position: absolute;
+            left: 10%;
+            top: 50%;
+            transform: translateY(-50%);
+            display: block;
+            max-width: 55px;
+            max-height: 98px;
+            width: 4.74vw;
+            height: 8.69vw;
+
+            background: url('../images/btn_arrow_p.png') no-repeat center;
+            background-size: cover;
+
+            z-index: 9;
+            cursor: pointer;
+            font-size: 0;
+            border: 0;
+        }
+        .sw-visual-next {
+            position: absolute;
+            right: 10%;
+            top: 50%;
+            transform: translateY(-50%) rotateY(-180deg);
+            display: block;
+            max-width: 55px;
+            max-height: 98px;
+            width: 4.74vw;
+            height: 8.69vw;
+            
+            background: url('../images/btn_arrow_p.png') no-repeat center;
+            background-size: cover;
+            z-index: 9;
+            cursor: pointer;
+            font-size: 0;
+            border: 0;
+        }
+    }
 }
 
 /* 스토리 */
