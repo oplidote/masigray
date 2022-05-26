@@ -4,23 +4,23 @@ $(document).ready(function () {
     let nav = $('.nav');
     let headerMain = $('.header-main');
     let logo = $('.logo');
-    nav.mouseenter(function () {
+    nav.mouseenter(function(){
         $(this).addClass('nav-active');
     });
-    headerMain.mouseleave(function () {
+    headerMain.mouseleave(function(){
         nav.removeClass('nav-active');
     });
-    logo.mouseenter(function () {
+    logo.mouseenter(function(){
         nav.removeClass('nav-active');
     });
 
     // 스크롤 기능
     let header = $('.header')
-    $(window).scroll(function () {
+    $(window).scroll(function(){
         let temp = $(window).scrollTop();
-        if (temp > 0) {
+        if(temp > 0) {
             header.addClass('fix-active')
-        } else {
+        }else{
             header.removeClass('fix-active')
         }
     });
@@ -31,40 +31,53 @@ $(document).ready(function () {
     let mMenuWrap = $('.m-menu-wrap');
     let mBtClose = $('.m-bt-close');
 
-    mBt.click(function () {
-        mMenuWrap.addClass('m-menu-wrap-active');
-        mMenuBg.addClass('m-menu-bg-active');
+    mBt.click(function(){
+       mMenuWrap.addClass('m-menu-wrap-active');
+       mMenuBg.addClass('m-menu-bg-active');
     });
-    mBtClose.click(function () {
+    mBtClose.click(function(){
         mMenuWrap.removeClass('m-menu-wrap-active');
         mMenuBg.removeClass('m-menu-bg-active');
     });
 
-    mMenuBg.click(function () {
+    mMenuBg.click(function(){
         mMenuWrap.removeClass('m-menu-wrap-active');
         mMenuBg.removeClass('m-menu-bg-active');
     });
 
     // 화면 리사이징 처리
-    $(window).resize(function () {
+    $(window).resize(function(){
         let w = $(window).width();
-        if (w > 700) {
+        if(w > 700) {
             mMenuWrap.removeClass('m-menu-wrap-active');
             mMenuBg.removeClass('m-menu-bg-active');
         }
     });
 
-
+    
 
 });
 
-window.onload = function () {
+window.onload = function(){
     // visual slide
-    let swVisual = new Swiper('.sw-visual', {
-        loop: true,
+    let swVisual = new Swiper('.sw-visual',{
+        loop: true,       
         navigation: {
-            prevEl: '.sw-visual-prev',
-            nextEl: '.sw-visual-next'
+            prevEl : '.sw-visual-prev',
+            nextEl : '.sw-visual-next'
+        }
+    });
+    // story slide
+    let swStory = new Swiper('.sw-story',{
+        loop: true,   
+        autoplay: {
+            delay: 1000,
+            disableOnInteraction: false,
+        }, 
+        speed: 1000,   
+        navigation: {
+            prevEl : '.sw-story-prev',
+            nextEl : '.sw-story-next'
         }
     });
 }
